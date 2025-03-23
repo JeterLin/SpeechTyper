@@ -1,8 +1,6 @@
 rich
-websockets
+websockets==15.0.1
 numpy
 typeguard==2.13.3
-sherpa_onnx
-funasr_onnx
-kaldi-native-fbank==1.17
+sherpa_onnx==1.11.2
 jieba

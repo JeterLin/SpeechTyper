@@ -4,7 +4,7 @@ import asyncio
 from multiprocessing import Process, Manager
 from platform import system
 
-import websockets
+from websockets.asyncio.server import serve
 from config import ServerConfig as Config
 from util.server_cosmic import Cosmic, console
 from util.server_check_model import check_model
@@ -45,7 +45,7 @@ async def main():
         empty_current_working_set()
 
     # 负责接收客户端数据的 coroutine
-    recv = websockets.serve(ws_recv,
+    recv =  serve(ws_recv,
                             Config.addr,
                             Config.port,
                             subprotocols=["binary"],
