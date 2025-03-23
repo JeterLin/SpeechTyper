@@ -26,7 +26,7 @@ def init_recognizer(queue_in: Queue, queue_out: Queue, sockets_id):
     # 导入模块
     with console.status("载入模块中…", spinner="bouncingBall", spinner_style="yellow"):
         import sherpa_onnx
-        from funasr_onnx import CT_Transformer
+        # from funasr_onnx import CT_Transformer
         disable_jieba_debug()
     console.print('[green4]模块加载完成', end='\n\n')
 
@@ -41,7 +41,12 @@ def init_recognizer(queue_in: Queue, queue_out: Queue, sockets_id):
     punc_model = None
     if Config.format_punc:
         console.print('[yellow]标点模型载入中', end='\r')
-        punc_model = CT_Transformer(ModelPaths.punc_model_dir, quantize=True)
+        # punc_model = CT_Transformer(ModelPaths.punc_model_dir, quantize=True)
+        punc_model_config = sherpa_onnx.OfflinePunctuationConfig(
+            model=sherpa_onnx.OfflinePunctuationModelConfig(
+                ct_transformer=f'{ModelPaths.punc_model_dir}',  # 指定标点模型路径
+        ))
+        punc_model = sherpa_onnx.OfflinePunctuation(punc_model_config)
         console.print(f'[green4]标点模型载入完成', end='\n\n')
 
     console.print(f'模型加载耗时 {time.time() - t1 :.2f}s', end='\n\n')
