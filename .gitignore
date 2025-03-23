@@ -1,1 +1,4 @@
 models/
+stvenv/
+__pycache__
+assets/
