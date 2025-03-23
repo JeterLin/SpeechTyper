@@ -21,11 +21,11 @@ class Handler:
 
 
 async def check_websocket() -> bool:
-    if Cosmic.websocket and not Cosmic.websocket.closed:
+    if Cosmic.websocket and not Cosmic.websocket:
         return True
     for _ in range(3):
         with Handler():
-            Cosmic.websocket = await websockets.connect(f"ws://{Config.addr}:{Config.port}", max_size=None)
+            Cosmic.websocket = await websockets.connect(f"ws://{Config.addr}:{Config.port}", max_size=None,subprotocols=["binary"])
             return True
     else:
         return False
