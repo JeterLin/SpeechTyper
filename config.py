@@ -18,7 +18,7 @@ class ClientConfig:
     port = 6016               # Server 端口
 
     shortcut     = 'caps lock'  # 控制录音的快捷键，默认是 CapsLock
-    hold_mode    = True         # 长按模式，按下录音，松开停止，像对讲机一样用。
+    hold_mode    = False         # 长按模式，按下录音，松开停止，像对讲机一样用。
                                 # 改为 False，则关闭长按模式，也就是单击模式
                                 #       即：单击录音，再次单击停止
                                 #       且：长按会执行原本的单击功能
